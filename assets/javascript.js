@@ -59,7 +59,7 @@ function currentWeather(cityName) {
 
 // Fetches the five day forecast data for a given city and updates the UI with the forecast information
 function fiveForecast(cityName) {
-    var url = `http://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=imperial`
+    var url = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=imperial`
 
     fetch(url)
         .then(function (response) {
