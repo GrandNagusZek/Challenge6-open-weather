@@ -3,6 +3,7 @@ var dashboardEl = document.getElementById("dashboard")
 var fiveDayEl = document.getElementById("five-day")
 var searchInputEl = document.getElementById("search-input")
 var searchBtnEl = document.getElementById("search-btn")
+var sectionBtnEl=document.getElementById("historyBtn")
 var historyArr = JSON.parse(localStorage.getItem("history")) || []
 
 displayHistory()
@@ -15,7 +16,15 @@ function displayHistory(){
     }
 }
 
+function populateData(event){
+    var currentButton=event.target
+    var cityName=currentButton.textContent
+    currentWeather(cityName)
+    fiveForecast(cityName)
 
+}
+
+sectionBtnEl.addEventListener("click", populateData)
 
 function currentWeather(cityName) {
     var url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=imperial`
