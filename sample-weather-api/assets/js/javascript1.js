@@ -7,6 +7,16 @@ var historyArr = JSON.parse(localStorage.getItem("history")) || []
 
 displayHistory()
 
+function displayHistory(){
+    sectionBtnEl.innerHTML=""
+    for(var i=0; i < historyArr.length; i++){
+        sectionBtnEl.innerHTML=sectionBtnEl.innerHTML+`
+        <button type+"button" class="btn bg-secondary w-100 mx-3 my-1">${historyArr[i]}</button>`
+    }
+}
+
+
+
 function currentWeather(cityName) {
     var url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=imperial`
 
@@ -17,8 +27,11 @@ function currentWeather(cityName) {
         .then(function (data) {
             console.log(data)
 
-            if(history.includes(data.name)===false){
-                history.pushState(data.name)
+            if(historyArr.includes(data.name)===false){
+                historyArr.push(data.name)
+
+                localStorage.setItem("history", JSON.stringify(historyArr) )
+                displayHistory() 
             }    
 
 
