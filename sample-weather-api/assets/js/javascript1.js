@@ -1,5 +1,6 @@
 var apiKey="78e753a08d650befa72a539b438a53bf"
 var dashboardEl=document.getElementById("dashboard")
+var fiveDayEl=document.getElementById("five-day")
 
 function currentWeather(cityName){
     var url=`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=imperial`
@@ -12,9 +13,9 @@ function currentWeather(cityName){
         console.log(data)
 
         dashboardEl.innerHTML=`<h3>${data.name} (${dayjs.unix(data.dt).format("MM/DD/YYYY")}) <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt=""></h3>
-        <p>Temp: 75 F</p>
-        <p>Wind: 8.11 MPH</p>
-        <p>Humidity: 11%</p>`
+       <p>Temp: ${data.main.temp}</p> <p>Feels like: ${data.main.feels_like}</p>
+        <p>Wind: ${data.wind.speed} MPH</p>
+        <p>Humidity: ${data.main.humidity}%</p>`
     })
 
 
