@@ -31,10 +31,60 @@ function fiveForecast(cityName){
     })
     .then(function(data){
         console.log(data)
+        fiveDayEl.textContent=""
 
         for(var i=3; i < data.list.length; i=i+8){
             var fiveDayArr=data.list
             console.log(fiveDayArr[i])
+            var divCol=document.createElement("div")
+            divCol.classList="col-sm-2 mb-3 mb-sm-0"
+
+            var divCard=document.createElement("div")
+            divCard.classList="card"
+
+            var divBody=document.createElement("div")
+            divBody.classList="card-body"
+
+            var h5=document.createElement("h5")
+            h5.classList="card-title"
+            h5.textContent= dayjs.unix(fiveDayArr[i].dt).format("MM/DD/YYYY")
+            divBody.appendChild(h5)
+
+            var img=document.createElement("img")
+            img.src="https://openweathermap.org/img/wn/" +fiveDayArr[i].weather[0].icon +"@2x.png"
+            divBody.appendChild(img)
+
+            var pTemp=document.createElement("p")
+            pTemp.classList="card-text"
+            pTemp.textContent="Temp: "+fiveDayArr[i].main.temp
+            divBody.appendChild(pTemp)
+            divCard.appendChild(divBody)
+            divCol.appendChild(divCard)
+
+            var pFeelsLike=document.createElement("p")
+            pFeelsLike.classList="card-text"
+            pFeelsLike.textContent="Feels like: "+fiveDayArr[i].main.feels_like
+            divBody.appendChild(pFeelsLike)
+            divCard.appendChild(divBody)
+            divCol.appendChild(divCard)
+
+            var pWind=document.createElement("p")
+            pWind.classList="card-text"
+            pWind.textContent="Wind: "+fiveDayArr[i].wind.speed
+            divBody.appendChild(pWind)
+            divCard.appendChild(divBody)
+            divCol.appendChild(divCard)
+
+            var pHumidity=document.createElement("p")
+            pHumidity.classList="card-text"
+            pHumidity.textContent="Humidity "+fiveDayArr[i].main.humidity
+            divBody.appendChild(pHumidity)
+            divCard.appendChild(divBody)
+            divCol.appendChild(divCard)
+
+            fiveDayEl.appendChild(divCol)
+
+
         }
 
 
