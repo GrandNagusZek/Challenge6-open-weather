@@ -41,4 +41,6 @@ The Weather Dashboard is a web application that allows users to check the curren
 * JavaScript code for fetching and displaying weather data.
 
 
-##
+## License
+
+This project is licensed under the MIT License. 
