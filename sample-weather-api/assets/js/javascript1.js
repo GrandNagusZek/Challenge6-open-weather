@@ -1,3 +1,4 @@
+// declares several variables to store API key, DOM elements, and array for storing search history
 var apiKey = "78e753a08d650befa72a539b438a53bf"
 var dashboardEl = document.getElementById("dashboard")
 var fiveDayEl = document.getElementById("five-day")
@@ -8,6 +9,7 @@ var historyArr = JSON.parse(localStorage.getItem("history")) || []
 
 displayHistory()
 
+// This function updates the history buttons in the UI based on the items stored in 'historyArr'
 function displayHistory(){
     sectionBtnEl.innerHTML=""
     for(var i=0; i < historyArr.length; i++){
@@ -24,8 +26,10 @@ function populateData(event){
 
 }
 
+// When a searched city button is clicked, it triggers the 'populateData' function
 sectionBtnEl.addEventListener("click", populateData)
 
+// Fetches the current weather data for a given city, updates the UI, and adds the city to 'historyArr'
 function currentWeather(cityName) {
     var url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=imperial`
 
@@ -53,7 +57,7 @@ function currentWeather(cityName) {
 
 }
 
-
+// Fetches the five day forecast data for a given city and updates the UI with the forecast information
 function fiveForecast(cityName) {
     var url = `http://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}&units=imperial`
 
@@ -124,7 +128,7 @@ function fiveForecast(cityName) {
 }
 
 
-
+// Called when the search button is clicked, it fetches and displays both current weather and the five-day forecast based on the user input.
 function search() {
     var cityName = searchInputEl.value
     currentWeather(cityName)
@@ -133,4 +137,5 @@ function search() {
 
 }
 
+// Listens for a click on the search button and triggers the 'search' function.
 searchBtnEl.addEventListener("click", search)
